@@ -1,21 +1,13 @@
-<html>
-	<head>
-		<title>Michelle's Django-Based Blob</title>
-	</head>
+{% extends 'blog/base.html' %}
 
-	<body>
-	<div>
-		<h1>Y'all ready 2 blob</h1>
-		<h3>Check out some of my latest posts</h3>
-	</div>
-
+{% block content %}
 	{% for post in posts %}
-		<div>
-			<p>published: {{ post.published_date }}</p>
-			<h1><a href="#">{{ post.title }}</a></h1>
+		<div class="post">
+			<div class="date">
+				<p>published: {{ post.published_date }}</p>
+			</div>
+			<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
 			<p>{{ post.text|linebreaks }}</p>
 		</div>
 	{% endfor %}
-
-	</body>
-</html>
+{% endblock %}
